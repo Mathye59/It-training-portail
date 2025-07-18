@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="relative font-roboto">
       {/* Navbar fixe */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-white/65 backdrop-blur-md shadow-md px-6 md:px-20 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 w-full z-50 bg-white/65 backdrop-blur-md shadow-md px-6 md:px-[15%] flex items-center justify-between">
         <img
           src="/logo/Logo.png"
           alt="Logo IT-Training"
