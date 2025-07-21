@@ -9,8 +9,9 @@ export default function BtnContact() {
 
   return (
     <button
+      id="contact-footer-btn"
       onClick={handleClick2}
-      className="bg-greenIT text-blueDarkIT font-semibold px-6 py-3 rounded-md hover:bg-greenIT-600 transition"
+      className="bg-greenIT text-blueDarkIT font-semibold px-6 py-3 rounded-md hover:bg-greenIT-dark transition"
     >
       Contactez notre équipe
     </button>

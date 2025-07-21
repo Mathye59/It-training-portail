@@ -2,7 +2,10 @@ import BtnContact from './BtnContact';
 
 export default function Footer() {
   return (
-    <footer className=" flex flex-col justify-between min-h-[200px] text-white pt-10">
+    <footer
+      className=" flex flex-col justify-between min-h-[200px] text-white pt-10"
+      id="Contact-footer"
+    >
       {/*milieu footer + bouton contact*/}
       <div className="  text-white text-center py-10 px-4 grow font-roboto">
         <h3 className="text-xl md:text-2xl font-bold mb-2">
@@ -11,6 +14,7 @@ export default function Footer() {
         <p className="text-m md:text-l mb-6">
           Nous créons des parcours sur mesure adaptés à vos enjeux
         </p>
+
         <BtnContact />
       </div>
 

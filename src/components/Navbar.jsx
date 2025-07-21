@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
+  const scrollToContactBtn = () => {
+    const btn = document.getElementById('contact-footer-btn');
+    if (btn) {
+      btn.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -40,17 +47,20 @@ export default function Navbar() {
       {/* Menu desktop */}
       <ul className="hidden md:flex space-x-6 font-semibold font-roboto text-lg text-blueDarkIT">
         <li>
-          <a href="#" className="hover:text-blueIT transition">
-            Accueil
-          </a>
+          <Link to="/">Accueil</Link>
         </li>
         <li>
-          <a href="#" className="hover:text-blueIT transition">
-            Catalogue
-          </a>
+          <Link to="/catalogue"> Catalogue</Link>
         </li>
         <li>
-          <a href="#" className="hover:text-blueIT transition">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToContactBtn(); // <- cette fonction est bonne
+            }}
+            className="cursor-pointer hover:text-blueIT transition"
+          >
             Contact
           </a>
         </li>
@@ -89,7 +99,14 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blueIT transition">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToContactBtn(); // <- cette fonction est bonne
+                }}
+                className="cursor-pointer hover:text-blueIT transition"
+              >
                 Contact
               </a>
             </li>
