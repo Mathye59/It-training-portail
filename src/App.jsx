@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Accueil from './pages/Accueil';
 // import Contact from './pages/Contact';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/components_reutilisable/Header';
+import Footer from './components/components_reutilisable/Footer';
 
 import './index.css';
 

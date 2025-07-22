@@ -1,13 +1,13 @@
-import GenericButton from './GenericButton';
+import GenericButton from './components_reutilisable/GenericButton';
 
 export default function TestPrerequisSection() {
   return (
-    <div className="text-center mt-10">
+    <div className="text-center text-white">
       <GenericButton
-        text="Test pré-requis"
-        color="bg-greenIT"
-        textColor="text-blueDarkIT"
-        to="/test-prerequis"
+        text="Testez vos prérequis"
+        bgColor="bg-violetIT hover:bg-violetIT-dark"
+        textColor="text-white"
+        // link="/test-pre-requis"
       />
     </div>
   );

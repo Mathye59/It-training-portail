@@ -1,3 +1,6 @@
+import BtnRechercheFormation from '../components/BtnRechercheFormation';
+import TestPrerequisSection from '../components/TestPrerequisSection';
+
 export default function Accueil() {
   return (
     <main className="pt-32 px-4 md:px-16 font-roboto text-blueDarkIT">
@@ -8,12 +11,8 @@ export default function Accueil() {
           IT-Training est un organisme de formation professionnelle...
         </p>
         <div className="flex justify-center gap-4">
-          <button className="bg-greenIT text-white px-4 py-2 rounded-full shadow">
-            Boutons recherches formation
-          </button>
-          <button className="bg-violetIT text-white px-4 py-2 rounded-full shadow">
-            Test Prérequis
-          </button>
+          <BtnRechercheFormation />
+          <TestPrerequisSection />
         </div>
       </section>
 
