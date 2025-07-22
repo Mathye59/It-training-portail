@@ -8,6 +8,7 @@ export default function GenericButton({
   borderColor,
   hoverBorderColor,
   fontStyle = 'font-semibold text-base',
+  className = 'px-6 py-2',
 }) {
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ export default function GenericButton({
   return (
     <button
       onClick={handleClick}
-      className={`border ${borderColor} ${hoverBorderColor} ${bgColor} ${textColor} ${fontStyle} px-6 py-2 rounded-xl hover:scale-105 transition`}
+      className={`border ${borderColor} ${hoverBorderColor} ${bgColor} ${textColor} ${fontStyle} ${className}  rounded-xl hover:scale-105 transition`}
     >
       {text}
     </button>

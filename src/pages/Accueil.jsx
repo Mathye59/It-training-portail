@@ -1,6 +1,6 @@
 import BtnRechercheFormation from '../components/BtnRechercheFormation';
 import TestPrerequisSection from '../components/TestPrerequisSection';
-
+import BtnPopup from '../components/components_reutilisable/GenericButtonPopUp';
 export default function Accueil() {
   return (
     <main className="pt-32 px-4 md:px-16 font-roboto text-blueDarkIT">
@@ -29,12 +29,12 @@ export default function Accueil() {
         <h2 className="text-2xl font-bold mb-8">Pourquoi IT-Training?</h2>
         <div className="flex flex-wrap justify-center gap-6">
           <BtnPopup
-            buttonText="Info 1"
+            buttonText="+800 Formations IT actualisées"
             popupText="Ceci est une info importante."
-            bgColor="bg-blue-600"
-            textColor="text-white"
-            borderColor="border-blue-600"
-            hoverBorderColor="hover:border-blue-800"
+            bgColor="bg-white"
+            textColor="text-blueDarkIT"
+            borderColor="border-greenIT"
+            hoverBorderColor="hover:border-greenIT-dark"
           />
           <div className="border-2 border-cyanIT p-4 rounded-md w-64">
             Sessions inter & intra sur mesure
