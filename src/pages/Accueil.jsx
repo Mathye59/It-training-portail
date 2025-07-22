@@ -1,4 +1,5 @@
 import BtnRechercheFormation from '../components/BtnRechercheFormation';
+import GenericButton from '../components/components_reutilisable/GenericButton';
 import TestPrerequisSection from '../components/TestPrerequisSection';
 
 export default function Accueil() {
