@@ -8,7 +8,15 @@ export default function Accueil() {
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-4">Présentation IT-Training</h2>
         <p className="max-w-xl mx-auto mb-6">
-          IT-Training est un organisme de formation professionnelle...
+          IT-Training est un organisme de formation professionnelle spécialisé
+          dans les métiers du numérique et de l’informatique. Nous accompagnons
+          les entreprises et les particuliers dans le développement de leurs
+          compétences grâce à des formations actualisées, des parcours
+          personnalisés et un suivi pédagogique de qualité. Nos programmes
+          s’adaptent aux besoins du marché, avec une attention particulière
+          portée à l’accessibilité, la performance et la montée en compétence
+          rapide. Grâce à nos tests de prérequis, nos apprenants peuvent
+          s’orienter efficacement vers les formations les plus pertinentes.
         </p>
         <div className="flex justify-center gap-4">
           <BtnRechercheFormation />
@@ -20,9 +28,14 @@ export default function Accueil() {
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-8">Pourquoi IT-Training?</h2>
         <div className="flex flex-wrap justify-center gap-6">
-          <div className="border-2 border-cyanIT p-4 rounded-md w-64">
-            +800 formations IT actualisées
-          </div>
+          <BtnPopup
+            buttonText="Info 1"
+            popupText="Ceci est une info importante."
+            bgColor="bg-blue-600"
+            textColor="text-white"
+            borderColor="border-blue-600"
+            hoverBorderColor="hover:border-blue-800"
+          />
           <div className="border-2 border-cyanIT p-4 rounded-md w-64">
             Sessions inter & intra sur mesure
           </div>

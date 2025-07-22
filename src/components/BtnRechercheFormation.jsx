@@ -6,7 +6,7 @@ export default function BtnRechercheFormation() {
       <GenericButton
         text="Rechercher une formation"
         bgColor="bg-greenIT hover:bg-greenIT-dark"
-        textColor="text-white"
+        textColor="text-blueDarkIT"
         // link="/test-pre-requis"
       />
     </div>
