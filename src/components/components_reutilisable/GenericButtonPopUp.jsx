@@ -9,8 +9,8 @@ export default function BtnPopup({
   borderColor,
   hoverBorderColor,
   fontStyle,
-  width = 'w-[400px]',
-  height = 'h-[200px]',
+  borderSize = 'border',
+  className = 'px-6 py-2',
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,8 +46,10 @@ export default function BtnPopup({
           bgColor={bgColor}
           textColor={textColor}
           borderColor={borderColor}
+          borderSize={borderSize}
           hoverBorderColor={hoverBorderColor}
           fontStyle={fontStyle}
+          className={className}
         />
       </div>
 

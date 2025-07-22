@@ -6,6 +6,7 @@ export default function GenericButton({
   textColor,
   link,
   borderColor,
+  borderSize = 'border',
   hoverBorderColor,
   fontStyle = 'font-semibold text-base',
   className = 'px-6 py-2',
@@ -21,7 +22,7 @@ export default function GenericButton({
   return (
     <button
       onClick={handleClick}
-      className={`border ${borderColor} ${hoverBorderColor} ${bgColor} ${textColor} ${fontStyle} ${className}  rounded-xl hover:scale-105 transition`}
+      className={`border ${borderColor}  ${borderSize} ${hoverBorderColor} ${bgColor} ${textColor} ${fontStyle} ${className}  rounded-xl hover:scale-105 transition`}
     >
       {text}
     </button>

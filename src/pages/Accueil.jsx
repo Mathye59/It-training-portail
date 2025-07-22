@@ -34,7 +34,9 @@ export default function Accueil() {
             bgColor="bg-white"
             textColor="text-blueDarkIT"
             borderColor="border-greenIT"
+            borderSize="border-2"
             hoverBorderColor="hover:border-greenIT-dark"
+            className="px-8 py-8"
           />
           <div className="border-2 border-cyanIT p-4 rounded-md w-64">
             Sessions inter & intra sur mesure
