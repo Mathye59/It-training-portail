@@ -1,4 +1,4 @@
-import BtnContact from './BtnContact';
+import BtnContact from '../BtnContact';
 
 export default function Footer() {
   return (
