@@ -7,7 +7,7 @@ export default function BtnContact() {
         text="Contacter notre équipe"
         bgColor="bg-greenIT hover:bg-greenIT-dark"
         textColor="text-blueDarkIT"
-        // link="/test-pre-requis"
+        link="/Contact"
       />
     </div>
   );

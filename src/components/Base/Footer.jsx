@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       className=" flex flex-col justify-between min-h-[200px] text-white pt-10"
-      id="Contact-footer"
+      id="BtnContact"
     >
       {/*milieu footer + bouton contact*/}
       <div className="  text-white text-center py-10 px-4 grow font-roboto">

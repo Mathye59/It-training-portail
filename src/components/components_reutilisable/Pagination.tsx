@@ -1,5 +1,5 @@
-import React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Props = {
   currentPage: number;
@@ -26,7 +26,7 @@ const AppPagination: React.FC<Props> = ({
       </button>
 
       {/* Page Numbers */}
-      <div className="flex rounded-xl shadow-shadowFinlandais overflow-hidden">
+      <div className="flex shadow-shadowFinlandais overflow-hidden">
         {pages.map((page, index) => {
           const isFirst = index === 0;
           const isLast = index === pages.length - 1;
@@ -38,10 +38,10 @@ const AppPagination: React.FC<Props> = ({
               onClick={() => onPageChange(page)}
               className={`w-12 h-12 border border-[#501F4F] text-base font-medium ${
                 isActive
-                  ? "bg-finlandais text-white"
-                  : "bg-[#FFF5F9] hover:bg-[#F2EAF0 text-yale ]"
-              } ${isFirst ? "rounded-l-xl" : ""} ${
-                isLast ? "rounded-r-xl" : ""
+                  ? 'bg-violetIT text-white'
+                  : 'bg-[#FFF5F9] hover:bg-[#F2EAF0 text-yale ]'
+              } ${isFirst ? 'rounded-l-xl' : ''} ${
+                isLast ? 'rounded-r-xl' : ''
               }`}
             >
               {page}

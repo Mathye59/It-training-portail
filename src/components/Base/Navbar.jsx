@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
-  const scrollToContactBtn = () => {
-    const btn = document.getElementById('contact-footer-btn');
+  const scrollToBtnContact = () => {
+    const btn = document.getElementById('BtnContact');
     if (btn) {
       btn.scrollIntoView({ behavior: 'smooth' });
     }
@@ -50,14 +50,14 @@ export default function Navbar() {
           <Link to="/">Accueil</Link>
         </li>
         <li>
-          <Link to="/catalogue"> Catalogue</Link>
+          <Link to="/Catalogue"> Catalogue</Link>
         </li>
         <li>
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              scrollToContactBtn(); // <- cette fonction est bonne
+              scrollToBtnContact(); // <- cette fonction est bonne
             }}
             className="cursor-pointer hover:text-blueIT transition"
           >
@@ -103,7 +103,7 @@ export default function Navbar() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToContactBtn(); // <- cette fonction est bonne
+                  scrollToBtnContact();
                 }}
                 className="cursor-pointer hover:text-blueIT transition"
               >

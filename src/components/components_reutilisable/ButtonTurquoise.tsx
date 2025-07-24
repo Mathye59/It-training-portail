@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type Props = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type Props = {
 const ButtonTurquoise: React.FC<Props> = ({ children, onClick, className }) => (
   <button
     onClick={onClick}
-    className={`bg-turquoise2 text-white px-6 py-2 rounded-md text-sm hover:bg-turquoise3 transition ${className}`}
+    className={`bg-greenIT text-blueDarkIT px-6 py-2 rounded-md text-sm hover:bg-greenIT-dark transition ${className}`}
   >
     {children}
   </button>

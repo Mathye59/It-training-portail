@@ -24,7 +24,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto border border-turquoise rounded-md p-8 bg-roseclair shadow-md">
+    <div className="max-w-xl mx-auto border border-turquoise rounded-md p-8 bg-roseclair shadow-md  h-screen ">
       <h2 className="text-center text-white bg-turquoise py-2 rounded-md mb-6 font-semibold text-lg">
         Formulaire contact
       </h2>
@@ -32,14 +32,14 @@ const ContactForm: React.FC = () => {
         Précisions du contenu à retrouver dans le message à envoyer
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 h-full">
         <input
           type="text"
           name="nom"
           value={formData.nom}
           onChange={handleChange}
           placeholder="Nom Prénom"
-          className="w-full border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
+          className="w-full size-16 border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
           required
         />
         <input
@@ -48,7 +48,7 @@ const ContactForm: React.FC = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email"
-          className="w-full border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
+          className="w-full size-16 border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
           required
         />
         <input
@@ -57,7 +57,7 @@ const ContactForm: React.FC = () => {
           value={formData.entreprise}
           onChange={handleChange}
           placeholder="Entreprise (facultatif)"
-          className="w-full border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
+          className="w-full size-16 border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
         />
         <input
           type="text"
@@ -65,7 +65,7 @@ const ContactForm: React.FC = () => {
           value={formData.objet}
           onChange={handleChange}
           placeholder="Objet message"
-          className="w-full border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
+          className="w-full size-16 border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
           required
         />
         <textarea
@@ -74,10 +74,10 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           placeholder="Précisions sur la demande"
           rows={4}
-          className="w-full border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
+          className="w-full h-1/3 border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
           required
         />
-        <div className="text-center pt-4">
+        <div className="text-center pt-4 ">
           <ButtonTurquoise>Envoyer</ButtonTurquoise>
         </div>
       </form>
