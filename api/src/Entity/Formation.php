@@ -8,8 +8,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
+#[Vich\Uploadable]
 #[ApiResource]
 class Formation
 {
@@ -35,6 +38,13 @@ class Formation
 
     #[ORM\Column(length: 255)]
     private ?string $minRequis = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'formation_images', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
+
 
     /**
      * @var Collection<int, SousTheme>
@@ -122,6 +132,30 @@ class Formation
         $this->minRequis = $minRequis;
 
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile !== null) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 
     /**

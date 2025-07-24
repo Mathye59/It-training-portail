@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Accueil from './pages/Accueil';
 // import Contact from './pages/Contact';
-import Header from './components/components_reutilisable/Header';
-import Footer from './components/components_reutilisable/Footer';
+import Header from './components/Base/Header';
+import Footer from './components/Base/Footer';
+import PageContact from './pages/PageContact';
+import PageCatalogue from './pages/PageCatalogue';
+import PageFormation from './pages/PageFormation';
 
 import './index.css';
 
@@ -12,8 +15,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Accueil />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
-        {/* Ajoute ici d'autres pages si besoin */}
+        <Route path="/Contact" element={<PageContact />} />
+        <Route path="/Catalogue" element={<PageCatalogue />} />
+        <Route path="/Formation" element={<PageFormation />} />
       </Routes>
       <Footer />
     </>

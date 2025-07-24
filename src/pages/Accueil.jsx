@@ -1,5 +1,5 @@
-import BtnRechercheFormation from '../components/BtnRechercheFormation';
-import TestPrerequisSection from '../components/TestPrerequisSection';
+import BtnRechercheFormation from '../components/Acceuil/BtnRechercheFormation';
+import TestPrerequisSection from '../components/components_reutilisable/TestPrerequisSection';
 import BtnPopup from '../components/components_reutilisable/GenericButtonPopUp';
 export default function Accueil() {
   return (
