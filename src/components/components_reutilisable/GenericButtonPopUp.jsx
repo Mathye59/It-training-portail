@@ -56,15 +56,15 @@ export default function BtnPopup({
       {isOpen && (
         <div
           id="overlay"
-          className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 pt-10"
         >
           <div
-            className="bg-white p-6 rounded-2xl shadow-xl max-w-md w-full mx-4 relative  ${width} ${height}"
+            className="bg-white p-14 rounded-2xl shadow-xl max-w-md w-full mx-4 relative  ${width} ${height} "
             onClick={(e) => e.stopPropagation()} // empêcher fermeture si clic dans la fenêtre
           >
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl"
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl "
             >
               ×
             </button>

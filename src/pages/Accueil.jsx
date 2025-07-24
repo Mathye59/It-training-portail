@@ -58,7 +58,7 @@ Chaque formation est personnalisable pour coller au plus près de vos besoins."
               borderColor="border-greenIT"
               borderSize="border-2"
               hoverBorderColor="hover:border-greenIT-dark"
-              className="px-8 py-8"
+              className="px-8 py-8 "
             />
           </div>
           <div className="flex flex-wrap justify-center gap-6">
