@@ -1,6 +1,7 @@
 import BtnRechercheFormation from '../components/BtnRechercheFormation';
-import GenericButton from '../components/components_reutilisable/GenericButton';
 import TestPrerequisSection from '../components/TestPrerequisSection';
+import BtnPopup from '../components/components_reutilisable/GenericButtonPopUp';
+import GenericButton from '../components/components_reutilisable/GenericButton';
 
 export default function Accueil() {
   return (
@@ -9,7 +10,15 @@ export default function Accueil() {
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-4">Présentation IT-Training</h2>
         <p className="max-w-xl mx-auto mb-6">
-          IT-Training est un organisme de formation professionnelle...
+          IT-Training est un organisme de formation professionnelle spécialisé
+          dans les métiers du numérique et de l’informatique. Nous accompagnons
+          les entreprises et les particuliers dans le développement de leurs
+          compétences grâce à des formations actualisées, des parcours
+          personnalisés et un suivi pédagogique de qualité. Nos programmes
+          s’adaptent aux besoins du marché, avec une attention particulière
+          portée à l’accessibilité, la performance et la montée en compétence
+          rapide. Grâce à nos tests de prérequis, nos apprenants peuvent
+          s’orienter efficacement vers les formations les plus pertinentes.
         </p>
         <div className="flex justify-center gap-4">
           <BtnRechercheFormation />
@@ -21,14 +30,39 @@ export default function Accueil() {
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-8">Pourquoi IT-Training?</h2>
         <div className="flex flex-wrap justify-center gap-6">
-          <div className="border-2 border-cyanIT p-4 rounded-md w-64">
-            +800 formations IT actualisées
+          <BtnPopup
+            buttonText="+800 Formations IT actualisées"
+            popupText="Ceci est une info importante."
+            bgColor="bg-white"
+            textColor="text-blueDarkIT"
+            borderColor="border-greenIT"
+            borderSize="border-4"
+            hoverBorderColor="hover:border-greenIT-dark"
+            className='px-8 py-8'
+          />
+          <div className="flex flex-wrap justify-center gap-6">
+            <BtnPopup
+            buttonText="Sessions inter & intra sur mesure"
+            popupText="Ceci est une info importante."
+            bgColor="bg-white"
+            textColor="text-blueDarkIT"
+            borderColor="border-greenIT"
+            borderSize="border-4"
+            hoverBorderColor="hover:border-greenIT-dark"
+            className='px-8 py-8'
+          />
           </div>
-          <div className="border-2 border-cyanIT p-4 rounded-md w-64">
-            Sessions inter & intra sur mesure
-          </div>
-          <div className="border-2 border-cyanIT p-4 rounded-md w-64">
-            Suivi de qualité et logistique en temps réel
+          <div className="flex flex-wrap justify-center gap-6">
+             <BtnPopup
+            buttonText="Suivi de qualité et logistique en temps réel"
+            popupText="Ceci est une info importante."
+            bgColor="bg-white"
+            textColor="text-blueDarkIT"
+            borderColor="border-greenIT"
+            borderSize="border-4"
+            hoverBorderColor="hover:border-greenIT-dark"
+            className='px-8 py-8'
+          />
           </div>
         </div>
       </section>
@@ -37,21 +71,40 @@ export default function Accueil() {
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-8">Formations populaires</h2>
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="bg-violetIT text-white px-6 py-2 rounded-full">
-            Réseaux
-          </button>
-          <button className="bg-violetIT text-white px-6 py-2 rounded-full">
-            Développement web
-          </button>
-          <button className="bg-violetIT text-white px-6 py-2 rounded-full">
-            Cybersécurité
-          </button>
-          <button className="bg-violetIT text-white px-6 py-2 rounded-full">
-            Systèmes
-          </button>
-        </div>
-      </section>
-
+          <div className="text-center ">
+              <GenericButton
+              text="Réseaux"
+              bgColor="bg-violetIT hover:bg-violetIT-dark"
+              textColor="text-white"
+              // link="/test-pre-requis"
+            /></div>
+            {/* </div>
+        {/* <div className="flex flex-wrap justify-center gap-4"> */}
+              {/* <GenericButton
+              text="Réseaux"
+              bgColor="bg-violetIT hover:bg-violetIT-dark"
+              textColor="text-white"
+              // link="/test-pre-requis"
+            /> */}
+            {/* </div>
+        <div className="flex flex-wrap justify-center gap-4"> */}
+              {/* <GenericButton
+              text="Réseaux"
+              bgColor="bg-violetIT hover:bg-violetIT-dark"
+              textColor="text-white"
+              // link="/test-pre-requis"
+            /> */}
+            {/* </div>
+        <div className="flex flex-wrap justify-center gap-4"> */}
+              {/* <GenericButton
+              text="Réseaux"
+              bgColor="bg-violetIT hover:bg-violetIT-dark"
+              textColor="text-white"
+              // link="/test-pre-requis"
+            /> */}
+            </div>
+      </section>      
+         
       {/* Témoignages */}
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-8">Témoignages</h2>
