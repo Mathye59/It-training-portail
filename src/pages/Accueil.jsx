@@ -70,39 +70,35 @@ export default function Accueil() {
       {/* Formations populaires */}
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-8">Formations populaires</h2>
-        <div className="flex flex-wrap justify-center gap-4">
-          <div className="text-center ">
+        <div className="flex flex-wrap justify-center items-center gap-4">
               <GenericButton
               text="Réseaux"
               bgColor="bg-violetIT hover:bg-violetIT-dark"
               textColor="text-white"
               // link="/test-pre-requis"
-            /></div>
-            {/* </div>
-        {/* <div className="flex flex-wrap justify-center gap-4"> */}
-              {/* <GenericButton
-              text="Réseaux"
+            />
+         
+              <GenericButton
+              text="Développement Web"
               bgColor="bg-violetIT hover:bg-violetIT-dark"
               textColor="text-white"
               // link="/test-pre-requis"
-            /> */}
-            {/* </div>
-        <div className="flex flex-wrap justify-center gap-4"> */}
-              {/* <GenericButton
-              text="Réseaux"
+            />
+          
+              <GenericButton
+              text="Cyber-sécurité"
               bgColor="bg-violetIT hover:bg-violetIT-dark"
               textColor="text-white"
               // link="/test-pre-requis"
-            /> */}
-            {/* </div>
-        <div className="flex flex-wrap justify-center gap-4"> */}
-              {/* <GenericButton
-              text="Réseaux"
+            /> 
+       
+              <GenericButton
+              text="Systéme"
               bgColor="bg-violetIT hover:bg-violetIT-dark"
               textColor="text-white"
               // link="/test-pre-requis"
-            /> */}
-            </div>
+            /> 
+        </div>
       </section>      
          
       {/* Témoignages */}
