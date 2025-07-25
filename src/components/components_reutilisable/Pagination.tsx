@@ -12,11 +12,27 @@ const AppPagination: React.FC<Props> = ({
   totalPages,
   onPageChange,
 }) => {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  // Détection de la largeur de l'écran pour adapter le nombre de pages visibles
+  const isMobile = window.innerWidth < 768;
+  const maxButtons = isMobile ? 4 : 8;
+
+  const getVisiblePages = () => {
+    let start = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    let end = start + maxButtons - 1;
+
+    if (end > totalPages) {
+      end = totalPages;
+      start = Math.max(1, end - maxButtons + 1);
+    }
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  };
+
+  const visiblePages = getVisiblePages();
 
   return (
     <div className="flex justify-center my-6 items-center space-x-2">
-      {/* Previous Arrow */}
+      {/* Flèche précédente */}
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -25,22 +41,24 @@ const AppPagination: React.FC<Props> = ({
         <ChevronLeft size={24} />
       </button>
 
-      {/* Page Numbers */}
+      {/* Numéros de page */}
       <div className="flex shadow-shadowFinlandais overflow-hidden">
-        {pages.map((page, index) => {
+        {visiblePages.map((page, index) => {
           const isFirst = index === 0;
-          const isLast = index === pages.length - 1;
+          const isLast = index === visiblePages.length - 1;
           const isActive = page === currentPage;
 
           return (
             <button
               key={page}
               onClick={() => onPageChange(page)}
-              className={`w-12 h-12 border border-[#501F4F] text-base font-medium ${
-                isActive
-                  ? 'bg-violetIT text-white'
-                  : 'bg-[#FFF5F9] hover:bg-[#F2EAF0 text-yale ]'
-              } ${isFirst ? 'rounded-l-xl' : ''} ${
+              className={`w-12 h-12 border border-[#501F4F] text-base font-medium transition
+                ${
+                  isActive
+                    ? 'bg-violetIT text-white'
+                    : 'bg-[#FFF5F9] hover:bg-[#F2EAF0] text-yale'
+                }
+                ${isFirst ? 'rounded-l-xl' : ''} ${
                 isLast ? 'rounded-r-xl' : ''
               }`}
             >
@@ -50,7 +68,7 @@ const AppPagination: React.FC<Props> = ({
         })}
       </div>
 
-      {/* Next Arrow */}
+      {/* Flèche suivante */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}

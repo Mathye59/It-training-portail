@@ -89,14 +89,10 @@ export default function Navbar() {
         >
           <ul className="flex flex-col items-center space-y-4 py-10  text-white">
             <li className="pb-20">
-              <a href="#" className="hover:text-blueIT transition">
-                Accueil
-              </a>
+              <Link to="/">Accueil</Link>
             </li>
             <li className="pb-20">
-              <a href="#" className="hover:text-blueIT transition">
-                Catalogue
-              </a>
+              <Link to="/Catalogue"> Catalogue</Link>
             </li>
             <li>
               <a

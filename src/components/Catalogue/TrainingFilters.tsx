@@ -7,8 +7,8 @@ type FilterSectionProps = {
 };
 
 const FilterSection: React.FC<FilterSectionProps> = ({ title, options }) => (
-  <div className="mb-6">
-    <h4 className="text-white font-semibold mb-2">{title}</h4>
+  <div className="mb-6 ">
+    <h4 className="text-white font-semibold mb-2 ">{title}</h4>
     <div className="space-y-2">
       {options.map((option, index) => (
         <label
@@ -27,11 +27,15 @@ const FilterSection: React.FC<FilterSectionProps> = ({ title, options }) => (
   </div>
 );
 
-const TrainingFilters: React.FC = () => {
+type TrainingFiltersProps = {
+  onCloseMobile?: () => void;
+};
+
+const TrainingFilters: React.FC<TrainingFiltersProps> = ({ onCloseMobile }) => {
   const [price, setPrice] = useState<number>(0);
 
   return (
-    <div className="bg-finlandais text-white p-6 rounded-lg w-full h-full md:w-64">
+    <div className="bg-finlandais text-white p-6 rounded-lg w-full md:w-64  ">
       {/* Slider Prix */}
       <div className="mb-6">
         <label htmlFor="priceRange" className="block mb-2 font-semibold">
@@ -71,7 +75,10 @@ const TrainingFilters: React.FC = () => {
 
       {/* Bouton appliquer */}
       <div className="mt-8">
-        <ButtonTurquoise className="w-full bg-turquoise text-WHITE font-semibold hover:bg-[#2ac7a8]">
+        <ButtonTurquoise
+          className="w-full bg-turquoise text-WHITE font-semibold hover:bg-[#2ac7a8]"
+          onClick={onCloseMobile} // Fermer en mobile au clic
+        >
           Appliquer les filtres
         </ButtonTurquoise>
       </div>

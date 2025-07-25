@@ -1,4 +1,5 @@
 import BtnContact from '../components_reutilisable/BtnContact';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -21,8 +22,8 @@ export default function Footer() {
       {/* Liens */}
 
       {/* Bas de page */}
-      <div className="mt-auto text-center text-m text-white/70 bg-blueDarkIT flex flex-row justify-between ">
-        <ul className="flex flex-row  items-center gap-4 text-xs ">
+      <div className="mt-auto pt-2 text-center text-m text-white/70 bg-blueDarkIT flex flex-row justify-between items-center pr-2 ">
+        <ul className="text-[8px] flex flex-col md:flex-row md:gap-4  justify-center  md:text-xs ">
           <li></li>
           <li>
             <a href="#" className="hover:text-cyanIT transition">
@@ -35,7 +36,16 @@ export default function Footer() {
             </a>
           </li>
         </ul>
-        <p>© 2025 IT-Training. Tous droits réservés.</p>
+        <p className="text-xs md:text-base">
+          © 2025 IT-Training. Tous droits réservés.
+        </p>
+        <Link
+          key="#"
+          to="#"
+          className="text-white md:text-blueDarkIT hover:text-white text-xs md:text-base"
+        >
+          Connexion
+        </Link>
       </div>
     </footer>
   );

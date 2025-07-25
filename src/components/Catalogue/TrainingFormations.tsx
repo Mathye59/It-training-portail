@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AppPagination from '../components_reutilisable/Pagination';
+import { Link } from 'react-router-dom';
 
 // Type pour une formation
 type Formation = {
@@ -9,7 +10,7 @@ type Formation = {
   niveau: string;
   image: string;
   prochaineSession: string;
-  etatSession: 'en cours' | 'cloturée';
+  etatSession: 'Formation en cours' | 'Formation cloturée';
 };
 
 // Fake données
@@ -18,9 +19,9 @@ const dummyFormations: Formation[] = Array.from({ length: 40 }, (_, i) => ({
   title: `Formation ${i + 1}`,
   description: 'Description de la formation',
   niveau: 'Niveau obtenu',
-  image: 'src/assets/images/OIP (1).jpeg',
+  image: 'public/images/formation-numerique-propriete-intellectuelle.jpg',
   prochaineSession: 'Prochaine session: 25/08/2025',
-  etatSession: i % 3 === 0 ? 'cloturée' : 'en cours',
+  etatSession: i % 3 === 0 ? 'Formation cloturée' : 'Formation en cours',
 }));
 
 const ITEMS_PER_PAGE = 5;
@@ -37,26 +38,26 @@ const TrainingFormations: React.FC = () => {
   const totalPages = Math.ceil(dummyFormations.length / ITEMS_PER_PAGE);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       {currentFormations.map((formation) => (
-        <a
+        <Link
           key={formation.id}
-          href="#"
-          className="relative flex flex-col items-center bg-white border border-turquoise rounded-lg hover:shadow-boxShadowTurquoise md:flex-row md:max-w-full hover:bg-roseclair transition"
+          to="/Formation"
+          className="relative flex flex-col items-center bg-white border border-turquoise rounded-lg hover:shadow-boxShadowTurquoise md:flex-row xl:max-w-[800px] sm:max-w-[450px] sm:min-h-48 w-full mx-auto hover:bg-roseclair transition"
         >
           {/* Étiquettes en haut à droite */}
-          <div className="absolute top-2 right-2 space-y-1 text-xs text-white text-right">
-            <span className="bg-finlandais px-2 py-1 rounded-md mr-1">
+          <div className="absolute flex flex-col items-end md:flex-row top-2 right-1 gap-1 text-xs text-white text-right">
+            <span className="bg-finlandais px-2 py-1 rounded-md mr-1 w-fit h-fit">
               {formation.prochaineSession}
             </span>
             <span
-              className={`px-2 py-1 rounded-md ${
-                formation.etatSession === 'en cours'
+              className={`px-2 py-1 rounded-md w-fit ${
+                formation.etatSession === 'Formation en cours'
                   ? 'bg-turquoise3'
                   : 'bg-finlandais'
               }`}
             >
-              {formation.etatSession === 'en cours'
+              {formation.etatSession === 'Formation en cours'
                 ? 'Session en cours'
                 : 'Session clôturée'}
             </span>
@@ -70,14 +71,14 @@ const TrainingFormations: React.FC = () => {
           />
 
           {/* Infos formation */}
-          <div className="flex flex-col justify-between p-4 leading-normal text-left w-full">
+          <div className="flex flex-col justify-between p-4 leading-normal text-left w-80% ">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-finlandais">
               {formation.title}
             </h5>
             <p className="mb-1 text-sm text-penn">{formation.description}</p>
             <span className="text-xs text-yale">{formation.niveau}</span>
           </div>
-        </a>
+        </Link>
       ))}
 
       {/* Pagination */}

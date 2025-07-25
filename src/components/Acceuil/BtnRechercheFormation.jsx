@@ -7,7 +7,7 @@ export default function BtnRechercheFormation() {
         text="Rechercher une formation"
         bgColor="bg-greenIT hover:bg-greenIT-dark"
         textColor="text-blueDarkIT"
-        // link="/test-pre-requis"
+        link="/Catalogue"
       />
     </div>
   );

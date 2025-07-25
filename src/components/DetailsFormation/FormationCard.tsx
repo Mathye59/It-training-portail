@@ -1,12 +1,13 @@
 import React from 'react';
 import ButtonFinlandais from '../components_reutilisable/ButtonFinlandais';
 import ButtonRoseClair from '../components_reutilisable/ButtonRoseClair';
+import { Link } from 'react-router-dom';
 
 type Props = {
   title: string;
   description: React.ReactNode;
   image: string;
-  link: string;
+  // link: string;
   dateProchaineSession: string;
   statutSession: 'En cours' | 'Clôturée';
   niveau: string;
@@ -20,7 +21,7 @@ const FormationCard: React.FC<Props> = ({
   title,
   description,
   image,
-  link,
+  // link,
   dateProchaineSession,
   statutSession,
   niveau,
@@ -30,7 +31,7 @@ const FormationCard: React.FC<Props> = ({
   lieuSession,
 }) => {
   return (
-    <div className="relative max-w-4xl bg-white border border-turquoise rounded-lg shadow-sm mx-auto">
+    <div className="relative max-w-4xl bg-white border border-turquoise rounded-lg shadow-sm mx-2 my-6">
       {/* ÉTIQUETTES EN HAUT À DROITE */}
       <div className="absolute top-4 right-4 space-y-1 flex flex-col items-end z-10">
         <span className="bg-finlandais text-white text-xs font-medium px-2 py-1 rounded-md shadow">
@@ -48,13 +49,13 @@ const FormationCard: React.FC<Props> = ({
       </div>
 
       {/* IMAGE */}
-      <a href={link}>
-        <img
-          className="rounded-t-lg object-cover w-full h-64 mb-4"
-          src={image}
-          alt={title}
-        />
-      </a>
+      {/* <a href={link}> */}
+      <img
+        className="rounded-t-lg object-cover w-full h-64 mb-4"
+        src={image}
+        alt={title}
+      />
+      {/* </a> */}
 
       {/* CONTENU TEXTE */}
       <div className="space-y-4 p-4 text-start">
@@ -81,15 +82,25 @@ const FormationCard: React.FC<Props> = ({
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-start gap-3 mt-6">
-          <a href={link}>
+        <div className="flex flex-col md:flex-row justify-center gap-3 mt-6">
+          <Link
+            key="#"
+            to="#"
+            className="relative flex flex-col items-center bg-white border rounded-lg hover:shadow-boxShadowTurquoise md:flex-row md:max-w-full hover:bg-roseclair transition"
+          >
             <ButtonFinlandais>
               Conditions inscription + Lien Test
             </ButtonFinlandais>
-          </a>
-          <ButtonRoseClair>
-            Inscription prochaine session formation
-          </ButtonRoseClair>
+          </Link>
+          <Link
+            key="#"
+            to="#"
+            className="relative flex flex-col items-center bg-white border rounded-lg hover:shadow-boxShadowTurquoise md:flex-row md:max-w-full hover:bg-roseclair transition"
+          >
+            <ButtonRoseClair>
+              Inscription prochaine session formation
+            </ButtonRoseClair>
+          </Link>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ type Props = {
 const ButtonTurquoise: React.FC<Props> = ({ children, onClick, className }) => (
   <button
     onClick={onClick}
-    className={`bg-greenIT text-blueDarkIT px-6 py-2 rounded-md text-sm hover:bg-greenIT-dark transition ${className}`}
+    className={`bg-greenIT text-blueDarkIT min-w-[150px] px-6 py-2 rounded-md text-sm hover:bg-greenIT-dark transition ${className}`}
   >
     {children}
   </button>
