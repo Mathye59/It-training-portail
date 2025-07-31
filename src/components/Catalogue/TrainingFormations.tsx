@@ -12,7 +12,30 @@ type Formation = {
   prochaineSession: string;
   etatSession: 'Formation en cours' | 'Formation cloturée';
 };
+const buildQuery = (filters: any) => {
+  const params = new URLSearchParams();
 
+  if (filters.lieu) params.append('lieu', filters.lieu);
+  if (filters.prix) params.append('prix[lte]', filters.prix);
+
+  filters.niveauObtenu?.forEach((val: string) =>
+    params.append('niveauObtenu[]', val)
+  );
+  filters.niveauRequis?.forEach((val: string) =>
+    params.append('niveauRequis[]', val)
+  );
+  filters.financement?.forEach((val: string) =>
+    params.append('financement[]', val)
+  );
+
+  return params.toString();
+};
+const fetchFormations = async (filters: any) => {
+  const query = buildQuery(filters);
+  const response = await fetch(`http://localhost:8000/api/formations?${query}`);
+  const data = await response.json();
+  setFormations(data['hydra:member']); // ou selon ta pagination
+};
 // Fake données
 const dummyFormations: Formation[] = Array.from({ length: 40 }, (_, i) => ({
   id: i + 1,

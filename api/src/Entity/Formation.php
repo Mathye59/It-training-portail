@@ -10,7 +10,16 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 
+#[ApiFilter(SearchFilter::class, properties: [
+    'niveauObtenu' => 'partial',
+    'niveauRequis' => 'partial',
+    'financement' => 'partial',
+])]
+#[ApiFilter(RangeFilter::class, properties: ['prix'])]
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 #[Vich\Uploadable]
 #[ApiResource]
@@ -41,6 +50,9 @@ class Formation
 
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[Vich\UploadableField(mapping: 'formation_images', fileNameProperty: 'image')]
     private ?File $imageFile = null;
@@ -132,6 +144,10 @@ class Formation
         $this->minRequis = $minRequis;
 
         return $this;
+    }
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 
     public function setImageFile(?File $imageFile = null): void

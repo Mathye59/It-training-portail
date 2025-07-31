@@ -6,7 +6,10 @@ import '../App.css';
 
 const PageCatalogue: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
-
+  const handleFilterChange = (filters: any) => {
+    // Tu pourras y traiter les filtres plus tard
+    console.log('Filtres appliqués :', filters);
+  };
   return (
     <div className="bg-white text-penn">
       <div className="container max-w-7xl mx-auto px-4 py-8">
@@ -24,7 +27,10 @@ const PageCatalogue: React.FC = () => {
               showFilters ? 'block' : 'hidden'
             } md:block`}
           >
-            <TrainingFilters onCloseMobile={() => setShowFilters(false)} />
+            <TrainingFilters
+              onCloseMobile={() => setShowFilters(false)}
+              onFilterChange={handleFilterChange}
+            />
           </aside>
 
           {/* Formations */}
