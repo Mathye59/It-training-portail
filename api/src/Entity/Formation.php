@@ -15,11 +15,11 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 
 #[ApiFilter(SearchFilter::class, properties: [
-    'niveauObtenu' => 'partial',
-    'niveauRequis' => 'partial',
-    'financement' => 'partial',
+    'dilpomeObtenu' => 'exact',
+    'minRequis' => 'exact',
 ])]
 #[ApiFilter(RangeFilter::class, properties: ['prix'])]
+
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 #[Vich\Uploadable]
 #[ApiResource]

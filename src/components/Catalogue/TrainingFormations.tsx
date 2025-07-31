@@ -19,10 +19,10 @@ const buildQuery = (filters: any) => {
   if (filters.prix) params.append('prix[lte]', filters.prix);
 
   filters.niveauObtenu?.forEach((val: string) =>
-    params.append('niveauObtenu[]', val)
+    params.append('diplomeObtenu[]', val)
   );
   filters.niveauRequis?.forEach((val: string) =>
-    params.append('niveauRequis[]', val)
+    params.append('minRequis[]', val)
   );
   filters.financement?.forEach((val: string) =>
     params.append('financement[]', val)

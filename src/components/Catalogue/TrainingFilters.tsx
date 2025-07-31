@@ -16,19 +16,19 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
 }) => {
   const [selectedLieu, setSelectedLieu] = useState<Option | null>(null);
   const [prix, setPrix] = useState<number>(0);
-  const [niveauObtenu, setNiveauObtenu] = useState<string[]>([]);
-  const [niveauRequis, setNiveauRequis] = useState<string[]>([]);
+  const [diplomeObtenu, setDiplomeObtenu] = useState<string[]>([]);
+  const [minRequis, setMinRequis] = useState<string[]>([]);
   const [financement, setFinancement] = useState<string[]>([]);
   // Envoie les filtres à chaque changement
   useEffect(() => {
     onFilterChange({
       lieu: selectedLieu,
       prix: prix,
-      niveauObtenu,
-      niveauRequis,
+      diplomeObtenu,
+      minRequis,
       financement,
     });
-  }, [selectedLieu, prix, niveauObtenu, niveauRequis, financement]);
+  }, [selectedLieu, prix, diplomeObtenu, minRequis, financement]);
 
   // Fonction simulant une API pour les lieux
   const fetchLieux = async (): Promise<Option[]> => {
@@ -84,9 +84,9 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
           <label key={niveau} className="flex items-center text-sm mb-1 gap-2">
             <input
               type="checkbox"
-              checked={niveauObtenu.includes(niveau)}
+              checked={diplomeObtenu.includes(niveau)}
               onChange={() =>
-                toggleValue(niveau, niveauObtenu, setNiveauObtenu)
+                toggleValue(niveau, diplomeObtenu, setDiplomeObtenu)
               }
               className="accent-turquoise"
             />
@@ -102,10 +102,8 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
           <label key={niveau} className="flex items-center text-sm mb-1 gap-2">
             <input
               type="checkbox"
-              checked={niveauRequis.includes(niveau)}
-              onChange={() =>
-                toggleValue(niveau, niveauRequis, setNiveauRequis)
-              }
+              checked={minRequis.includes(niveau)}
+              onChange={() => toggleValue(niveau, minRequis, setMinRequis)}
               className="accent-turquoise"
             />
             {niveau}
