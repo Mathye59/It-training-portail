@@ -9,7 +9,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #665f66;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -76,6 +76,6 @@ footer {
     color: #0b1141;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #f9f9f900;
   }
 }
