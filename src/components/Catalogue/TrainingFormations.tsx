@@ -61,12 +61,12 @@ const TrainingFormations: React.FC = () => {
   const totalPages = Math.ceil(dummyFormations.length / ITEMS_PER_PAGE);
 
   return (
-    <div className="space-y-6 ">
+    <div className="space-y-6">
       {currentFormations.map((formation) => (
         <Link
           key={formation.id}
           to="/Formation"
-          className="relative flex flex-col items-center bg-white border border-turquoise rounded-lg hover:shadow-boxShadowTurquoise md:flex-row xl:max-w-[800px] sm:max-w-[450px] sm:min-h-48 w-full mx-auto hover:bg-roseclair transition"
+          className="relative flex flex-col items-center bg-white border border-turquoise rounded-lg hover:shadow-boxShadowTurquoise md:flex-row xl:max-w-[800px] sm:max-w-[450px] sm:min-h-48 w-full mx-auto hover:bg-roseclair transition h-48"
         >
           {/* Étiquettes en haut à droite */}
           <div className="absolute flex flex-col items-end md:flex-row top-2 right-1 gap-1 text-xs text-white text-right">
@@ -90,7 +90,7 @@ const TrainingFormations: React.FC = () => {
           <img
             src={formation.image}
             alt={formation.title}
-            className="object-cover w-full h-64 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+            className="object-cover rounded-t-lg md:h-full md:w-48 md:rounded-none md:rounded-s-lg"
           />
 
           {/* Infos formation */}

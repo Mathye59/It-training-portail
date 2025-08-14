@@ -24,7 +24,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto border border-turquoise rounded-md p-8 bg-roseclair shadow-md  h-screen ">
+    <div className="max-w-xl mx-auto border border-turquoise rounded-md p-8 bg-roseclair shadow-md  h-auto">
       <h2 className="text-center text-white bg-turquoise py-2 rounded-md mb-6 font-semibold text-lg">
         Formulaire contact
       </h2>
@@ -74,7 +74,7 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           placeholder="Précisions sur la demande"
           rows={4}
-          className="w-full h-1/3 border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
+          className="w-full h-80 border border-finlandais rounded-md px-4 py-2 text-penn focus:outline-none focus:ring-2 focus:ring-finlandais"
           required
         />
         <div className="text-center pt-4 ">
