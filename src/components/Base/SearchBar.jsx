@@ -21,7 +21,7 @@ export default function SearchBar() {
       <button
         onClick={handleSearch}
         type="button"
-        className="absolute top-1/2 right-4 -translate-y-[10%] bg-cyanIT text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:scale-105 transition-transform"
+        className="absolute top-1/2 right-4 -translate-y-[10%] bg-greenIT hover:bg-turquoise2 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:scale-105 transition-transform"
       >
         🔍
       </button>

@@ -10,8 +10,16 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT-Training</title>
+    <script>
+      (function () {
+        const saved = localStorage.getItem('theme');
+        const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (sysDark ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
   </head>
-  <body>
+  <body class="bg-white text-blueDarkIT dark:bg-blueDarkIT dark:text-white">
     <div id="root" class="w-full h-full"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -31,7 +31,7 @@ const FormationCard: React.FC<Props> = ({
   lieuSession,
 }) => {
   return (
-    <div className="relative max-w-4xl bg-white border border-turquoise rounded-lg shadow-sm mx-2 my-6">
+    <div className="relative max-w-4xl bg-white border border-turquoise rounded-lg shadow-sm mx-2 my-6  dark:bg-blueIT dark:text-white">
       {/* ÉTIQUETTES EN HAUT À DROITE */}
       <div className="absolute top-4 right-4 space-y-1 flex flex-col items-end z-10">
         <span className="bg-finlandais text-white text-xs font-medium px-2 py-1 rounded-md shadow">
@@ -59,10 +59,10 @@ const FormationCard: React.FC<Props> = ({
 
       {/* CONTENU TEXTE */}
       <div className="space-y-4 p-4 text-start">
-        <h5 className="text-2xl font-bold tracking-tight text-penn">{title}</h5>
+        <h5 className="text-2xl font-bold tracking-tight text-penn dark:text-white">{title}</h5>
         <div className="text-yale">{description}</div>
 
-        <div className="text-sm space-y-2 text-penn">
+        <div className="text-sm space-y-2 text-penn dark:text-white">
           <p>
             <span className="font-semibold">Niveau obtenu :</span> {niveau}
           </p>

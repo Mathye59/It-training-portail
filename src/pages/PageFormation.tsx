@@ -3,14 +3,14 @@ import FormationCard from '../components/DetailsFormation/FormationCard';
 
 const PageFormation: React.FC = () => {
   const description = (
-    <div className="text-sm text-penn space-y-2 space-x-2">
+    <div className="text-sm text-penn dark:text-white space-y-2 space-x-2 ">
       <p>
         Cette formation <strong>« Développeur Web et Web Mobile »</strong> vous
         permet d’acquérir les compétences nécessaires pour concevoir, développer
         et maintenir des sites web dynamiques ainsi que des applications mobiles
         compatibles tous supports.
       </p>
-      <p className="font-semibold">
+      <p className="font-semibold ">
         À l’issue de cette formation, vous serez capable de :
       </p>
       <ul className="list-disc list-inside space-y-1">
@@ -35,7 +35,7 @@ const PageFormation: React.FC = () => {
   );
 
   return (
-    <div className="bg-white text-penn min-h-screen flex justify-center items-center px-4">
+    <div className="bg-white text-penn min-h-screen flex justify-center items-center px-4 dark:bg-blueDarkIT ">
       <div className="w-full max-w-4xl mx-2">
         <FormationCard
           title="Développeur Web et Web Mobile"
