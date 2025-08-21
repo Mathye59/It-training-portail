@@ -10,53 +10,72 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 
 #[ApiFilter(SearchFilter::class, properties: [
-    'dilpomeObtenu' => 'exact',
+    'diplomeObtenu' => 'exact',
     'minRequis' => 'exact',
 ])]
 #[ApiFilter(RangeFilter::class, properties: ['prix'])]
-
+#[ApiResource(
+    normalizationContext: ['groups' => ['formation:read']],
+    denormalizationContext: ['groups' => ['formation:write']]
+)]
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 #[Vich\Uploadable]
-#[ApiResource]
 class Formation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['formation:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['formation:read'])]
     private ?string $titre = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['formation:read'])]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups(['formation:read'])]
     private ?int $duree = null;
 
     #[ORM\Column]
+    #[Groups(['formation:read'])]
     private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['formation:read'])]
     private ?string $diplomeObtenu = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['formation:read'])]
     private ?string $minRequis = null;
 
+    #[Groups(['formation:read'])]
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    #[Groups(['formation:read'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[Vich\UploadableField(mapping: 'formation_images', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['formation:read'])]
+    private ?string $etatSession = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['formation:read'])]
+    private ?string $prochaineSession = null;
 
     /**
      * @var Collection<int, SousTheme>
@@ -82,7 +101,6 @@ class Formation
     public function setTitre(string $titre): static
     {
         $this->titre = $titre;
-
         return $this;
     }
 
@@ -94,7 +112,6 @@ class Formation
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -106,7 +123,6 @@ class Formation
     public function setDuree(int $duree): static
     {
         $this->duree = $duree;
-
         return $this;
     }
 
@@ -118,7 +134,6 @@ class Formation
     public function setPrix(float $prix): static
     {
         $this->prix = $prix;
-
         return $this;
     }
 
@@ -130,7 +145,6 @@ class Formation
     public function setDiplomeObtenu(string $diplomeObtenu): static
     {
         $this->diplomeObtenu = $diplomeObtenu;
-
         return $this;
     }
 
@@ -142,12 +156,17 @@ class Formation
     public function setMinRequis(string $minRequis): static
     {
         $this->minRequis = $minRequis;
-
         return $this;
     }
+
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->image ? '/uploads/formations/' . $this->image : null;
     }
 
     public function setImageFile(?File $imageFile = null): void
@@ -174,6 +193,28 @@ class Formation
         $this->image = $image;
     }
 
+    public function getEtatSession(): ?string
+    {
+        return $this->etatSession;
+    }
+
+    public function setEtatSession(?string $etatSession): static
+    {
+        $this->etatSession = $etatSession;
+        return $this;
+    }
+
+    public function getProchaineSession(): ?string
+    {
+        return $this->prochaineSession;
+    }
+
+    public function setProchaineSession(?string $prochaineSession): static
+    {
+        $this->prochaineSession = $prochaineSession;
+        return $this;
+    }
+
     /**
      * @return Collection<int, SousTheme>
      */
@@ -194,7 +235,6 @@ class Formation
     public function removeSousTheme(SousTheme $sousTheme): static
     {
         $this->sousThemes->removeElement($sousTheme);
-
         return $this;
     }
 }

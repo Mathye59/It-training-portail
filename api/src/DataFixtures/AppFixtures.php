@@ -49,8 +49,8 @@ class AppFixtures extends Fixture
                 'description' => 'Structurez vos pages web avec HTML5 et stylisez-les avec CSS3.',
                 'duree' => 20,
                 'prix' => 790,
-                'diplome' => 'Niveau Brevet',
-                'requis' => 'Aucun',
+                'diplomeObtenu' => 'Niveau Brevet',
+                'minRequis' => 'Aucun',
                 'sousThemes' => ['Développement Front-End']
             ],
             [
@@ -58,8 +58,8 @@ class AppFixtures extends Fixture
                 'description' => 'Apprenez les fondamentaux modernes de JavaScript.',
                 'duree' => 35,
                 'prix' => 990,
-                'diplome' => 'Bac',
-                'requis' => 'Brevet',
+                'diplomeObtenu' => 'Bac',
+                'minRequis' => 'Brevet',
                 'sousThemes' => ['Développement Front-End']
             ],
             [
@@ -67,8 +67,8 @@ class AppFixtures extends Fixture
                 'description' => 'Construisez des interfaces dynamiques avec React.',
                 'duree' => 40,
                 'prix' => 1490,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Développement Front-End', 'Développement Mobile']
             ],
             [
@@ -76,8 +76,8 @@ class AppFixtures extends Fixture
                 'description' => 'Créez des applications interactives avec Vue.js.',
                 'duree' => 35,
                 'prix' => 1390,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Développement Front-End']
             ],
             [
@@ -85,8 +85,8 @@ class AppFixtures extends Fixture
                 'description' => 'Développement web dynamique avec PHP et MySQL.',
                 'duree' => 45,
                 'prix' => 1290,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Développement Back-End']
             ],
             [
@@ -94,8 +94,8 @@ class AppFixtures extends Fixture
                 'description' => 'Développez des applications robustes avec Symfony.',
                 'duree' => 50,
                 'prix' => 1990,
-                'diplome' => 'Bac+3',
-                'requis' => 'Bac+2',
+                'diplomeObtenu' => 'Bac+3',
+                'minRequis' => 'Bac+2',
                 'sousThemes' => ['Développement Back-End', 'Architecture Logicielle']
             ],
             [
@@ -103,8 +103,8 @@ class AppFixtures extends Fixture
                 'description' => 'API RESTful côté serveur avec Node.js.',
                 'duree' => 40,
                 'prix' => 1590,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Développement Back-End']
             ],
             [
@@ -112,8 +112,8 @@ class AppFixtures extends Fixture
                 'description' => 'Bases du langage Python et automatisation simple.',
                 'duree' => 30,
                 'prix' => 950,
-                'diplome' => 'Bac',
-                'requis' => 'Brevet',
+                'diplomeObtenu' => 'Bac',
+                'minRequis' => 'Brevet',
                 'sousThemes' => ['Automatisation']
             ],
             [
@@ -121,8 +121,8 @@ class AppFixtures extends Fixture
                 'description' => 'Déploiement moderne avec Docker, GitHub Actions.',
                 'duree' => 40,
                 'prix' => 1690,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['DevOps']
             ],
             [
@@ -130,8 +130,8 @@ class AppFixtures extends Fixture
                 'description' => 'Tests automatisés en PHP avec PHPUnit.',
                 'duree' => 25,
                 'prix' => 890,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Qualité Logicielle']
             ],
             [
@@ -139,8 +139,8 @@ class AppFixtures extends Fixture
                 'description' => 'Concevez des logiciels maintenables et modulaires.',
                 'duree' => 30,
                 'prix' => 1290,
-                'diplome' => 'Bac+3',
-                'requis' => 'Bac+2',
+                'diplomeObtenu' => 'Bac+3',
+                'minRequis' => 'Bac+2',
                 'sousThemes' => ['Architecture Logicielle']
             ],
             [
@@ -148,8 +148,8 @@ class AppFixtures extends Fixture
                 'description' => 'Commandes de base et gestion de serveurs Linux.',
                 'duree' => 35,
                 'prix' => 990,
-                'diplome' => 'Bac',
-                'requis' => 'Brevet',
+                'diplomeObtenu' => 'Bac',
+                'minRequis' => 'Brevet',
                 'sousThemes' => ['Systèmes et Réseaux']
             ],
             [
@@ -157,8 +157,8 @@ class AppFixtures extends Fixture
                 'description' => 'Premiers pas dans la protection numérique.',
                 'duree' => 30,
                 'prix' => 1190,
-                'diplome' => 'Bac',
-                'requis' => 'Brevet',
+                'diplomeObtenu' => 'Bac',
+                'minRequis' => 'Brevet',
                 'sousThemes' => ['Cybersécurité']
             ],
             [
@@ -166,8 +166,8 @@ class AppFixtures extends Fixture
                 'description' => 'Hébergez vos applis web avec Amazon Web Services.',
                 'duree' => 35,
                 'prix' => 1490,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Cloud Computing']
             ],
             [
@@ -175,8 +175,8 @@ class AppFixtures extends Fixture
                 'description' => 'Développement mobile multi-plateformes avec Flutter.',
                 'duree' => 50,
                 'prix' => 1990,
-                'diplome' => 'Bac+3',
-                'requis' => 'Bac+2',
+                'diplomeObtenu' => 'Bac+3',
+                'minRequis' => 'Bac+2',
                 'sousThemes' => ['Développement Mobile']
             ],
             [
@@ -184,8 +184,8 @@ class AppFixtures extends Fixture
                 'description' => 'Scripts Python pour l’automatisation quotidienne.',
                 'duree' => 30,
                 'prix' => 1090,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Automatisation']
             ],
             [
@@ -193,8 +193,8 @@ class AppFixtures extends Fixture
                 'description' => 'Travail collaboratif et gestion de version avec Git.',
                 'duree' => 20,
                 'prix' => 750,
-                'diplome' => 'Bac',
-                'requis' => 'Brevet',
+                'diplomeObtenu' => 'Bac',
+                'minRequis' => 'Brevet',
                 'sousThemes' => ['DevOps']
             ],
             [
@@ -202,8 +202,8 @@ class AppFixtures extends Fixture
                 'description' => 'Bases de données orientées documents.',
                 'duree' => 32,
                 'prix' => 1290,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Développement Back-End']
             ],
             [
@@ -211,8 +211,8 @@ class AppFixtures extends Fixture
                 'description' => 'Adaptabilité mobile-first en CSS.',
                 'duree' => 28,
                 'prix' => 820,
-                'diplome' => 'Bac',
-                'requis' => 'Brevet',
+                'diplomeObtenu' => 'Bac',
+                'minRequis' => 'Brevet',
                 'sousThemes' => ['Développement Front-End']
             ],
             [
@@ -220,8 +220,8 @@ class AppFixtures extends Fixture
                 'description' => 'Ajoutez du typage à vos projets JavaScript.',
                 'duree' => 34,
                 'prix' => 1290,
-                'diplome' => 'Bac+2',
-                'requis' => 'Bac',
+                'diplomeObtenu' => 'Bac+2',
+                'minRequis' => 'Bac',
                 'sousThemes' => ['Développement Front-End']
             ],
         ];
@@ -232,9 +232,11 @@ class AppFixtures extends Fixture
             $formation->setDescription($data['description']);
             $formation->setDuree($data['duree']);
             $formation->setPrix($data['prix']);
-            $formation->setDiplomeObtenu($data['diplome']);
-            $formation->setMinRequis($data['requis']);
+            $formation->setDiplomeObtenu($data['diplomeObtenu']);
+            $formation->setMinRequis($data['minRequis']);
             $formation->setUpdatedAt(new \DateTimeImmutable());
+            $formation->setEtatSession($faker->randomElement(['Formation en cours', 'Formation cloturée']));
+            $formation->setProchaineSession($faker->date('d/m/Y'));
 
             foreach ($data['sousThemes'] as $nomSousTheme) {
                 if (isset($sousThemes[$nomSousTheme])) {
