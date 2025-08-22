@@ -13,11 +13,12 @@ function App() {
   return (
     <>
       <Header />
+
       <Routes>
         <Route path="/" element={<Accueil />} />
         <Route path="/Contact" element={<PageContact />} />
         <Route path="/Catalogue" element={<PageCatalogue />} />
-        <Route path="/Formation" element={<PageFormation />} />
+        <Route path="/Formation/:id" element={<PageFormation />} />
       </Routes>
       <Footer />
     </>

@@ -16,8 +16,13 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 
 #[ApiFilter(SearchFilter::class, properties: [
+    'titre' => 'partial',
     'diplomeObtenu' => 'exact',
     'minRequis' => 'exact',
+    'financement' => 'exact',
+    'etatSession' => 'exact',
+    'prochaineSession' => 'exact',
+    'lieu' => 'exact',
 ])]
 #[ApiFilter(RangeFilter::class, properties: ['prix'])]
 #[ApiResource(

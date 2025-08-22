@@ -4,6 +4,7 @@ type Props = {
   max: number;
   value: number;
   onChange: (value: number) => void;
+  step?: number;
 };
 
 const FilterRange: React.FC<Props> = ({ label, min, max, value, onChange }) => {
@@ -20,6 +21,7 @@ const FilterRange: React.FC<Props> = ({ label, min, max, value, onChange }) => {
         id="rangeSlider"
         min={min}
         max={max}
+        step={50}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-full accent-turquoise"

@@ -3,34 +3,67 @@ import ButtonTurquoise from '../components_reutilisable/ButtonTurquoise';
 import ListeDeroulante from '../components_reutilisable/Listederoulante';
 import { Option } from '../components_reutilisable/types';
 import FilterRange from '../components_reutilisable/FilterRange';
-import FilterSection from '../components_reutilisable/FilterSection';
 
 type TrainingFiltersProps = {
-  onFilterChange: (filters: any) => void;
+  filters: any;
+  setFilters: (filters: any) => void;
   onCloseMobile?: () => void;
+  resetKey: number;
 };
 
-const TrainingFilters: React.FC<TrainingFiltersProps> = ({
-  onFilterChange,
+const TrainingFilters = ({
+  filters,
+  setFilters,
+  resetKey,
   onCloseMobile,
-}) => {
+}: TrainingFiltersProps) => {
   const [selectedLieu, setSelectedLieu] = useState<Option | null>(null);
   const [prix, setPrix] = useState<number>(0);
   const [diplomeObtenu, setDiplomeObtenu] = useState<string[]>([]);
   const [minRequis, setMinRequis] = useState<string[]>([]);
   const [financement, setFinancement] = useState<string[]>([]);
-  // Envoie les filtres à chaque changement
-  useEffect(() => {
-    onFilterChange({
+
+  // ✅ Appliquer les filtres (à la main)
+  const handleApplyFilters = () => {
+    setFilters({
       lieu: selectedLieu,
-      prix: prix,
+      prix,
       diplomeObtenu,
       minRequis,
       financement,
     });
-  }, [selectedLieu, prix, diplomeObtenu, minRequis, financement]);
 
-  // Fonction simulant une API pour les lieux
+    if (onCloseMobile) {
+      onCloseMobile();
+    }
+  };
+
+  // ✅ Réinitialiser visuellement ET côté API
+  const handleResetFilters = () => {
+    setSelectedLieu(null);
+    setPrix(0);
+    setDiplomeObtenu([]);
+    setMinRequis([]);
+    setFinancement([]);
+
+    setFilters({
+      lieu: null,
+      prix: 0,
+      diplomeObtenu: [],
+      minRequis: [],
+      financement: [],
+    });
+
+    if (onCloseMobile) {
+      onCloseMobile();
+    }
+  };
+
+  // Reset automatique (ex: bouton externe)
+  useEffect(() => {
+    handleResetFilters();
+  }, [resetKey]);
+
   const fetchLieux = async (): Promise<Option[]> => {
     return new Promise((resolve) =>
       setTimeout(() => {
@@ -45,6 +78,7 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
       }, 300)
     );
   };
+
   const toggleValue = (
     value: string,
     currentValues: string[],
@@ -56,9 +90,9 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
       setValues([...currentValues, value]);
     }
   };
+
   return (
     <div className="bg-finlandais text-white p-6 rounded-lg w-full md:w-64">
-      {/* Barre de prix */}
       <FilterRange
         label="Prix maximum"
         min={0}
@@ -67,7 +101,6 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
         onChange={setPrix}
       />
 
-      {/* Lieu */}
       <div className="mb-6">
         <ListeDeroulante
           label="Lieu"
@@ -77,7 +110,7 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
           loadOptions={fetchLieux}
         />
       </div>
-      {/* Niveau obtenu */}
+
       <div className="mb-6">
         <label className="block mb-1 font-semibold">Niveau obtenu</label>
         {['Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5'].map((niveau) => (
@@ -95,7 +128,6 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
         ))}
       </div>
 
-      {/* Niveau requis */}
       <div className="mb-6">
         <label className="block mb-1 font-semibold">Niveau requis</label>
         {['Brevet', 'Bac', 'Bac +1', 'Bac +2', 'Bac +3'].map((niveau) => (
@@ -111,7 +143,6 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
         ))}
       </div>
 
-      {/* Financement */}
       <div className="mb-6">
         <label className="block mb-1 font-semibold">Financement</label>
         {['CPF', 'Pôle emploi', 'Entreprise', 'Autofinancé'].map((f) => (
@@ -127,13 +158,18 @@ const TrainingFilters: React.FC<TrainingFiltersProps> = ({
         ))}
       </div>
 
-      {/* Bouton Appliquer */}
       <div className="mt-8">
         <ButtonTurquoise
           className="w-full bg-turquoise text-WHITE font-semibold hover:bg-[#2ac7a8]"
-          onClick={onCloseMobile}
+          onClick={handleApplyFilters}
         >
           Appliquer les filtres
+        </ButtonTurquoise>
+        <ButtonTurquoise
+          onClick={handleResetFilters}
+          className="w-full mt-4 bg-gray-200 text-black hover:bg-gray-300"
+        >
+          Réinitialiser les filtres
         </ButtonTurquoise>
       </div>
     </div>

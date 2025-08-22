@@ -5,11 +5,14 @@ import GenericButton from '../components/components_reutilisable/GenericButton';
 
 export default function Accueil() {
   return (
-    <main className="pt-32 px-4 md:px-16 font-roboto text-blueDarkIT">
+    <main
+      className="pt-32 px-4 md:px-16 font-roboto text-blueDarkIT dark:text-white
+                     bg-white dark:bg-blueDarkIT"
+    >
       {/* Présentation IT-Training */}
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-4">Présentation IT-Training</h2>
-        <p className="max-w-xl mx-auto mb-6">
+        <p className="max-w-xl mx-auto mb-6 dark:text-white/90">
           IT-Training est un organisme de formation professionnelle spécialisé
           dans les métiers du numérique et de l’informatique. Nous accompagnons
           les entreprises et les particuliers dans le développement de leurs
@@ -41,7 +44,7 @@ Nos contenus sont mis à jour en continu pour rester alignés avec les dernière
             borderColor="border-greenIT"
             borderSize="border-2"
             hoverBorderColor="hover:border-greenIT-dark"
-            className="px-8 py-8"
+            className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT"
           />
           <div className="flex flex-wrap justify-center gap-6">
             <BtnPopup
@@ -58,7 +61,7 @@ Chaque formation est personnalisable pour coller au plus près de vos besoins."
               borderColor="border-greenIT"
               borderSize="border-2"
               hoverBorderColor="hover:border-greenIT-dark"
-              className="px-8 py-8 "
+              className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT "
             />
           </div>
           <div className="flex flex-wrap justify-center gap-6">
@@ -74,7 +77,7 @@ L’objectif : vous offrir un service clé en main, transparent et performant à
               borderColor="border-greenIT"
               borderSize="border-2"
               hoverBorderColor="hover:border-greenIT-dark"
-              className="px-8 py-8"
+              className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT"
             />
           </div>
         </div>
@@ -115,18 +118,18 @@ L’objectif : vous offrir un service clé en main, transparent et performant à
       </section>
 
       {/* Témoignages */}
-      <section className="text-center mb-16">
+      <section className="text-center pb-16">
         <h2 className="text-2xl font-bold mb-8">Témoignages</h2>
         <div className="flex flex-wrap justify-center gap-6">
-          <div className="border-2 border-cyanIT bg-pink-50 p-6 rounded-md w-64">
-            “Témoignage”
-          </div>
-          <div className="border-2 border-cyanIT bg-pink-50 p-6 rounded-md w-64">
-            “Témoignage”
-          </div>
-          <div className="border-2 border-cyanIT bg-pink-50 p-6 rounded-md w-64">
-            “Témoignage”
-          </div>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div
+              key={i}
+              className="border-2 border-cyanIT bg-pink-50 dark:bg-blueDarkIT dark:border-greenIT
+                         text-blueDarkIT dark:text-white p-6 rounded-md w-64"
+            >
+              “Témoignage”
+            </div>
+          ))}
         </div>
       </section>
     </main>

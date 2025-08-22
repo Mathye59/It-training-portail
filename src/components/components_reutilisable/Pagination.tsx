@@ -12,7 +12,6 @@ const AppPagination: React.FC<Props> = ({
   totalPages,
   onPageChange,
 }) => {
-  // Détection de la largeur de l'écran pour adapter le nombre de pages visibles
   const isMobile = window.innerWidth < 768;
   const maxButtons = isMobile ? 4 : 8;
 
@@ -36,7 +35,7 @@ const AppPagination: React.FC<Props> = ({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="text-yale disabled:opacity-30"
+        className="text-yale dark:text-white dark:bg-blueDarkIT disabled:opacity-30"
       >
         <ChevronLeft size={24} />
       </button>
@@ -52,15 +51,16 @@ const AppPagination: React.FC<Props> = ({
             <button
               key={page}
               onClick={() => onPageChange(page)}
-              className={`w-12 h-12 border border-[#501F4F] text-base font-medium transition
+              className={`
+                w-12 h-12 border text-base font-medium transition
+                ${isFirst ? 'rounded-l-xl' : ''} ${isLast ? 'rounded-r-xl' : ''}
                 ${
                   isActive
-                    ? 'bg-violetIT text-white'
-                    : 'bg-[#FFF5F9] hover:bg-[#F2EAF0] text-yale'
+                    ? 'bg-violetIT text-white dark:bg-greenIT dark:text-blueDarkIT'
+                    : 'bg-[#FFF5F9] text-yale hover:bg-[#F2EAF0] dark:bg-blueDarkIT dark:text-white dark:hover:bg-greenIT/30'
                 }
-                ${isFirst ? 'rounded-l-xl' : ''} ${
-                isLast ? 'rounded-r-xl' : ''
-              }`}
+                border-[#501F4F] dark:border-greenIT
+              `}
             >
               {page}
             </button>
@@ -72,7 +72,7 @@ const AppPagination: React.FC<Props> = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="text-yale disabled:opacity-30"
+        className="text-yale dark:text-white dark:bg-blueDarkIT disabled:opacity-30"
       >
         <ChevronRight size={24} />
       </button>
