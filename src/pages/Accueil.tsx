@@ -1,14 +1,12 @@
-import BtnRechercheFormation from '../components/Acceuil/BtnRechercheFormation';
-import TestPrerequisSection from '../components/components_reutilisable/TestPrerequisSection';
-import BtnPopup from '../components/components_reutilisable/GenericButtonPopUp';
-import GenericButton from '../components/components_reutilisable/GenericButton';
+import React from 'react';
+import BtnRechercheFormation from '../components/Acceuil/BtnRechercheFormation.tsx'; // vérifie bien "Acceuil" vs "Accueil"
+import TestPrerequisSection from '../components/components_reutilisable/TestPrerequisSection.tsx';
+import BtnPopup from '../components/components_reutilisable/GenericButtonPopUp.tsx';
+import GenericButton from '../components/components_reutilisable/GenericButton.tsx';
 
-export default function Accueil() {
+const Accueil: React.FC = () => {
   return (
-    <main
-      className="pt-32 px-4 md:px-16 font-roboto text-blueDarkIT dark:text-white
-                     bg-white dark:bg-blueDarkIT"
-    >
+    <main className="pt-32 px-4 md:px-16 font-roboto text-blueDarkIT dark:text-white bg-white dark:bg-blueDarkIT">
       {/* Présentation IT-Training */}
       <section className="text-center mb-16">
         <h2 className="text-2xl font-bold mb-4">Présentation IT-Training</h2>
@@ -31,14 +29,16 @@ export default function Accueil() {
 
       {/* Pourquoi IT-Training */}
       <section className="text-center mb-16">
-        <h2 className="text-2xl font-bold mb-8">Pourquoi IT-Training?</h2>
+        <h2 className="text-2xl font-bold mb-8">Pourquoi IT-Training ?</h2>
+
         <div className="flex flex-wrap justify-center gap-6">
           <BtnPopup
             buttonText="+800 Formations IT actualisées"
-            popupText="
+            popupText={`
 Chez IT-Training, nous mettons à votre disposition un catalogue riche de plus de 800 formations spécialisées dans le domaine de l’informatique. Ce large éventail couvre des thématiques variées telles que le développement web, la cybersécurité, les réseaux, le cloud, l’intelligence artificielle, la data, et bien plus encore.
 
-Nos contenus sont mis à jour en continu pour rester alignés avec les dernières évolutions technologiques et les besoins concrets des entreprises. Grâce à cette veille permanente, nous garantissons des formations pertinentes, opérationnelles et prêtes à répondre aux enjeux du terrain."
+Nos contenus sont mis à jour en continu pour rester alignés avec les dernières évolutions technologiques et les besoins concrets des entreprises. Grâce à cette veille permanente, nous garantissons des formations pertinentes, opérationnelles et prêtes à répondre aux enjeux du terrain.
+            `}
             bgColor="bg-white"
             textColor="text-blueDarkIT"
             borderColor="border-greenIT"
@@ -46,40 +46,42 @@ Nos contenus sont mis à jour en continu pour rester alignés avec les dernière
             hoverBorderColor="hover:border-greenIT-dark"
             className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT"
           />
-          <div className="flex flex-wrap justify-center gap-6">
-            <BtnPopup
-              buttonText="Sessions inter & intra sur mesure"
-              popupText="Nous offrons deux formats complémentaires pour répondre à tous les contextes professionnels :
+
+          <BtnPopup
+            buttonText="Sessions inter & intra sur mesure"
+            popupText={`
+Nous offrons deux formats complémentaires pour répondre à tous les contextes professionnels :
 
 Les sessions inter-entreprises, organisées à dates fixes, permettent à plusieurs apprenants issus d’organisations différentes de suivre une formation ensemble. Elles favorisent l’échange d’expériences et la souplesse d’inscription.
 
 Les sessions intra-entreprise, quant à elles, sont conçues sur-mesure selon les objectifs, les outils, le niveau et le rythme de vos équipes. Elles peuvent se dérouler dans vos locaux, à distance ou en blended learning.
 
-Chaque formation est personnalisable pour coller au plus près de vos besoins."
-              bgColor="bg-white"
-              textColor="text-blueDarkIT"
-              borderColor="border-greenIT"
-              borderSize="border-2"
-              hoverBorderColor="hover:border-greenIT-dark"
-              className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT "
-            />
-          </div>
-          <div className="flex flex-wrap justify-center gap-6">
-            <BtnPopup
-              buttonText="Suivi de qualité et logistique en temps réel"
-              popupText="IT-Training vous accompagne bien au-delà de la simple délivrance des cours. Grâce à notre plateforme de gestion dédiée, vous avez accès à un suivi en temps réel de chaque formation : présence des participants, progression pédagogique, évaluations, satisfaction, documents administratifs, etc.
+Chaque formation est personnalisable pour coller au plus près de vos besoins.
+              `}
+            bgColor="bg-white"
+            textColor="text-blueDarkIT"
+            borderColor="border-greenIT"
+            borderSize="border-2"
+            hoverBorderColor="hover:border-greenIT-dark"
+            className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT"
+          />
+
+          <BtnPopup
+            buttonText="Suivi de qualité et logistique en temps réel"
+            popupText={`
+IT-Training vous accompagne bien au-delà de la simple délivrance des cours. Grâce à notre plateforme de gestion dédiée, vous avez accès à un suivi en temps réel de chaque formation : présence des participants, progression pédagogique, évaluations, satisfaction, documents administratifs, etc.
 
 Notre équipe logistique assure également la gestion des lieux, des accès, des supports et des équipements, en coordination avec vos contraintes. Ce pilotage rigoureux garantit une expérience fluide pour les apprenants comme pour les responsables formation.
 
-L’objectif : vous offrir un service clé en main, transparent et performant à chaque étape du parcours."
-              bgColor="bg-white"
-              textColor="text-blueDarkIT"
-              borderColor="border-greenIT"
-              borderSize="border-2"
-              hoverBorderColor="hover:border-greenIT-dark"
-              className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT"
-            />
-          </div>
+L’objectif : vous offrir un service clé en main, transparent et performant à chaque étape du parcours.
+              `}
+            bgColor="bg-white"
+            textColor="text-blueDarkIT"
+            borderColor="border-greenIT"
+            borderSize="border-2"
+            hoverBorderColor="hover:border-greenIT-dark"
+            className="px-8 py-8 dark:bg-blueDarkIT dark:text-white dark:border-greenIT"
+          />
         </div>
       </section>
 
@@ -91,28 +93,21 @@ L’objectif : vous offrir un service clé en main, transparent et performant à
             text="Réseaux"
             bgColor="bg-violetIT hover:bg-violetIT-dark"
             textColor="text-white"
-            // link="/test-pre-requis"
           />
-
           <GenericButton
             text="Développement Web"
             bgColor="bg-violetIT hover:bg-violetIT-dark"
             textColor="text-white"
-            // link="/test-pre-requis"
           />
-
           <GenericButton
             text="Cyber-sécurité"
             bgColor="bg-violetIT hover:bg-violetIT-dark"
             textColor="text-white"
-            // link="/test-pre-requis"
           />
-
           <GenericButton
-            text="Systéme"
+            text="Système"
             bgColor="bg-violetIT hover:bg-violetIT-dark"
             textColor="text-white"
-            // link="/test-pre-requis"
           />
         </div>
       </section>
@@ -124,8 +119,7 @@ L’objectif : vous offrir un service clé en main, transparent et performant à
           {Array.from({ length: 3 }).map((_, i) => (
             <div
               key={i}
-              className="border-2 border-cyanIT bg-pink-50 dark:bg-blueDarkIT dark:border-greenIT
-                         text-blueDarkIT dark:text-white p-6 rounded-md w-64"
+              className="border-2 border-cyanIT bg-pink-50 dark:bg-blueDarkIT dark:border-greenIT text-blueDarkIT dark:text-white p-6 rounded-md w-64"
             >
               “Témoignage”
             </div>
@@ -134,4 +128,6 @@ L’objectif : vous offrir un service clé en main, transparent et performant à
       </section>
     </main>
   );
-}
+};
+
+export default Accueil;

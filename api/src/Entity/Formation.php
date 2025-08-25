@@ -16,13 +16,13 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 
 #[ApiFilter(SearchFilter::class, properties: [
-    'titre' => 'partial',
+    'titre' => 'ipartial',
     'diplomeObtenu' => 'exact',
     'minRequis' => 'exact',
-    'financement' => 'exact',
     'etatSession' => 'exact',
     'prochaineSession' => 'exact',
-    'lieu' => 'exact',
+    'sousThemes.nom' => 'ipartial',
+    'sousThemes.theme.nom' => 'ipartial',
 ])]
 #[ApiFilter(RangeFilter::class, properties: ['prix'])]
 #[ApiResource(

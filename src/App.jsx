@@ -1,12 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Accueil from './pages/Accueil';
+import Accueil from './pages/Accueil.tsx';
 // import Contact from './pages/Contact';
-import Header from './components/Base/Header';
-import Footer from './components/Base/Footer';
-import PageContact from './pages/PageContact';
-import PageCatalogue from './pages/PageCatalogue';
-import PageFormation from './pages/PageFormation';
-
+import Header from './components/Base/Header.tsx';
+import Footer from './components/Base/Footer.tsx';
+import PageContact from './pages/PageContact.tsx';
+import PageCatalogue from './pages/PageCatalogue.tsx';
+import PageFormation from './pages/PageFormation.tsx';
 import './index.css';
 
 function App() {

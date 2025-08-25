@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import AppPagination from '../components_reutilisable/Pagination';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
-// Type pour une formation récupérée depuis l'API
 type Formation = {
   id: string;
   titre: string;
+  prix: number | string;
   description: string;
   diplomeObtenu: string;
   minRequis: string;
@@ -14,82 +14,137 @@ type Formation = {
   etatSession?: string;
 };
 
-// Props attendues depuis le composant parent (filtres)
 type Props = {
-  filters: any;
+  filters: any; // { prixMax?: number, search?: string, ... }
 };
 
-// Nombre d'éléments affichés par page
 const ITEMS_PER_PAGE = 5;
 
+// ---- utils ------------------------------------------------------------------
+const toNumber = (v: number | string) =>
+  typeof v === 'number'
+    ? v
+    : Number(
+        String(v)
+          .replace(/[^\d.,-]/g, '')
+          .replace(',', '.')
+      );
+
+const getHydra = async (res: Response) => {
+  const data = await res.json();
+  return Array.isArray(data) ? data : data['hydra:member'] || [];
+};
+
+const dedupeById = <T extends { id: string }>(arr: T[]): T[] =>
+  Object.values(
+    arr.reduce<Record<string, T>>((acc, x) => ((acc[x.id] = x), acc), {})
+  );
+
+// Construit les params communs (prix, autres filtres) – sans "search"
+const buildCommonParams = (filters: any): string => {
+  const params = new URLSearchParams();
+
+  if (filters.prixMax != null)
+    params.append('prix[lte]', String(filters.prixMax));
+
+  filters?.diplomeObtenu?.forEach((val: string) =>
+    params.append('diplomeObtenu[]', val)
+  );
+  filters?.minRequis?.forEach((val: string) =>
+    params.append('minRequis[]', val)
+  );
+  filters?.financement?.forEach((val: string) =>
+    params.append('financement[]', val)
+  );
+
+  if (filters.lieu?.label) params.append('lieu', filters.lieu.label);
+
+  const s = params.toString();
+  return s ? `&${s}` : '';
+};
+
+// ---- component --------------------------------------------------------------
 const TrainingFormations: React.FC<Props> = ({ filters }) => {
   const [formations, setFormations] = useState<Formation[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // Fonction utilitaire pour construire une string alt depuis le nom du fichier image
-  const getAltFromFilename = (filename: string): string => {
-    const parts = filename.split('/').pop()?.split('.')[0].split('-') || [];
-    return parts
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  };
+  // lire aussi ?search=... si la page est appelée depuis la barre du header
+  const [sp] = useSearchParams();
+  const searchFromUrl = sp.get('search') ?? '';
+  const search = (filters.search ?? searchFromUrl).trim();
 
-  // Fonction de construction des paramètres de requête à partir des filtres sélectionnés
-  const buildQuery = (filters: any): string => {
-    const params = new URLSearchParams();
+  const prixMax: number = filters.prixMax ?? 5000;
 
-    if (filters.prix > 0) params.append('prix[gte]', filters.prix.toString());
-
-    filters.diplomeObtenu?.forEach((val: string) => {
-      params.append('diplomeObtenu[]', val);
-    });
-
-    filters.minRequis?.forEach((val: string) => {
-      params.append('minRequis[]', val);
-    });
-
-    filters.financement?.forEach((val: string) => {
-      params.append('financement[]', val);
-    });
-
-    if (filters.lieu?.label) {
-      params.append('lieu', filters.lieu.label);
-    }
-
-    return params.toString();
-  };
-
-  // Récupération des formations depuis l'API à chaque changement de filtre
   useEffect(() => {
     const fetchFormations = async () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL;
-        const query = buildQuery(filters);
-        const response = await fetch(`${apiUrl}/formations?${query}`, {
-          headers: {
-            Accept: 'application/json',
-          },
-        });
-        const data = await response.json();
-        console.log('Formations reçues:', data);
-        setFormations(Array.isArray(data) ? data : data['hydra:member'] || []);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des formations :', error);
+        const common = buildCommonParams({ ...filters, search: undefined }); // sans "search"
+
+        if (search) {
+          const q = encodeURIComponent(search);
+
+          // 3 requêtes en parallèle (titre, sous-thème, thème) + filtres communs (dont prix ≤)
+          const [r1, r2, r3] = await Promise.all([
+            fetch(`${apiUrl}/formations?titre[partial]=${q}${common}`, {
+              headers: { Accept: 'application/json' },
+            }),
+            fetch(
+              `${apiUrl}/formations?sousThemes.nom[partial]=${q}${common}`,
+              { headers: { Accept: 'application/json' } }
+            ),
+            fetch(
+              `${apiUrl}/formations?sousThemes.theme.nom[partial]=${q}${common}`,
+              { headers: { Accept: 'application/json' } }
+            ),
+          ]);
+
+          const [A, B, C] = await Promise.all([
+            getHydra(r1),
+            getHydra(r2),
+            getHydra(r3),
+          ]);
+          const merged = dedupeById<Formation>([...A, ...B, ...C]);
+
+          // Ceinture & bretelles : on réapplique prix ≤ client-side au cas où
+          setFormations(merged.filter((f) => toNumber(f.prix) <= prixMax));
+        } else {
+          // pas de recherche: liste classique avec filtres communs
+          const p = buildCommonParams({ ...filters, search: undefined }).slice(
+            1
+          ); // retire le '&' initial
+          const url = `${apiUrl}/formations${p ? `?${p}` : ''}`;
+          const res = await fetch(url, {
+            headers: { Accept: 'application/json' },
+          });
+          const list = await getHydra(res);
+          setFormations(list);
+        }
+
+        setCurrentPage(1); // revenir à la page 1 à chaque modif de filtres/recherche
+      } catch (err) {
+        console.error('Erreur lors de la récupération des formations :', err);
+        setFormations([]);
       }
     };
 
     fetchFormations();
-  }, [filters]);
+  }, [filters, search, prixMax, sp]);
 
-  // Pagination locale
+  // Liste finale paginée (on garde une passe prix ≤ au cas où le back n’ait pas filtré)
+  const source = useMemo(
+    () => formations.filter((f) => toNumber(f.prix) <= prixMax),
+    [formations, prixMax]
+  );
+
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentFormations = formations.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(formations.length / ITEMS_PER_PAGE);
+  const currentFormations = source.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(source.length / ITEMS_PER_PAGE);
 
   return (
     <div className="space-y-6">
-      {formations.length === 0 ? (
+      {source.length === 0 ? (
         <h1 className="text-center text-gray-500 dark:text-white">
           Aucune formation ne correspond à votre recherche.
         </h1>
@@ -99,16 +154,9 @@ const TrainingFormations: React.FC<Props> = ({ filters }) => {
             <Link
               key={formation.id}
               to={`/Formation/${formation.id}`}
-              className="
-            relative flex flex-col items-center
-            bg-white border border-turquoise rounded-lg
-            hover:shadow-boxShadowTurquoise
-            md:flex-row xl:max-w-[800px] sm:max-w-[450px] sm:min-h-48 w-full mx-auto
-            hover:bg-roseclair transition
-            dark:bg-blueIT dark:text-white dark:border-greenIT dark:hover:bg-blueIT/95
-          "
+              className="relative flex flex-col items-center bg-white border border-turquoise rounded-lg hover:shadow-boxShadowTurquoise lg:flex-row xl:max-w-[800px] lg:max-w-[700px] sm:max-w-[450px] sm:min-h-48 w-full mx-auto hover:bg-roseclair transition dark:bg-blueIT dark:text-white dark:border-greenIT dark:hover:bg-blueIT/95"
             >
-              {/* Étiquettes : prochaine session & état */}
+              {/* Badges */}
               <div className="absolute flex flex-col items-end md:flex-row top-2 right-1 gap-1 text-xs text-white text-right">
                 {formation.prochaineSession && (
                   <span className="bg-finlandais px-2 py-1 rounded-md mr-1 w-fit h-fit">
@@ -130,7 +178,7 @@ const TrainingFormations: React.FC<Props> = ({ filters }) => {
                 )}
               </div>
 
-              {/* Image de la formation */}
+              {/* Image */}
               <img
                 src={
                   formation.image && formation.image.trim() !== ''
@@ -142,15 +190,11 @@ const TrainingFormations: React.FC<Props> = ({ filters }) => {
                   e.currentTarget.src =
                     '/images/formation-numerique-propriete-intellectuelle.jpg';
                 }}
-                alt={
-                  formation.image
-                    ? formation.titre
-                    : 'Formation numérique et propriété intellectuelle'
-                }
-                className="rounded-t-lg md:h-full md:w-48 md:rounded-none md:rounded-s-lg object-contain md:object-cover"
+                alt={formation.titre}
+                className="rounded-t-lg h-auto lg:max-h-48 object-cover"
               />
 
-              {/* Contenu textuel */}
+              {/* Texte */}
               <div className="flex flex-col justify-between p-4 leading-normal text-left w-80%">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-finlandais dark:text-white">
                   {formation.titre}
@@ -171,7 +215,6 @@ const TrainingFormations: React.FC<Props> = ({ filters }) => {
             </Link>
           ))}
 
-          {/* Pagination */}
           <AppPagination
             currentPage={currentPage}
             totalPages={totalPages}

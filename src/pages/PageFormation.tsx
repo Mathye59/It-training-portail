@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import FormationCard from '../components/DetailsFormation/FormationCard';
+import FormationCard from '../components/DetailsFormation/FormationCard.tsx';
 
 const PageFormation: React.FC = () => {
   const { id } = useParams();

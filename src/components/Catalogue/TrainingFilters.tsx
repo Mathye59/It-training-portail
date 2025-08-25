@@ -18,7 +18,8 @@ const TrainingFilters = ({
   onCloseMobile,
 }: TrainingFiltersProps) => {
   const [selectedLieu, setSelectedLieu] = useState<Option | null>(null);
-  const [prix, setPrix] = useState<number>(0);
+  const [prixMax, setPrixMax] = useState<number>(5000);
+
   const [diplomeObtenu, setDiplomeObtenu] = useState<string[]>([]);
   const [minRequis, setMinRequis] = useState<string[]>([]);
   const [financement, setFinancement] = useState<string[]>([]);
@@ -27,7 +28,7 @@ const TrainingFilters = ({
   const handleApplyFilters = () => {
     setFilters({
       lieu: selectedLieu,
-      prix,
+      prixMax,
       diplomeObtenu,
       minRequis,
       financement,
@@ -41,14 +42,14 @@ const TrainingFilters = ({
   // ✅ Réinitialiser visuellement ET côté API
   const handleResetFilters = () => {
     setSelectedLieu(null);
-    setPrix(0);
+    setPrixMax(5000);
     setDiplomeObtenu([]);
     setMinRequis([]);
     setFinancement([]);
 
     setFilters({
       lieu: null,
-      prix: 0,
+      prixMax: 5000,
       diplomeObtenu: [],
       minRequis: [],
       financement: [],
@@ -90,15 +91,21 @@ const TrainingFilters = ({
       setValues([...currentValues, value]);
     }
   };
+  const NIVEAUX_REQUIS = ['Brevet', 'Bac', 'Bac+1', 'Bac+2', 'Bac+3'] as const; //permet de cocher automatiquement les niveaux inférieurs
+  function getInferiorLevels(niveau: string): string[] {
+    const idx = NIVEAUX_REQUIS.indexOf(niveau as any);
+    if (idx === -1) return [];
+    return NIVEAUX_REQUIS.slice(0, idx + 1);
+  }
 
   return (
     <div className="bg-finlandais text-white p-6 rounded-lg w-full md:w-64">
       <FilterRange
         label="Prix maximum"
         min={0}
-        max={15000}
-        value={prix}
-        onChange={setPrix}
+        max={5000}
+        value={prixMax}
+        onChange={setPrixMax}
       />
 
       <div className="mb-6">
@@ -113,7 +120,7 @@ const TrainingFilters = ({
 
       <div className="mb-6">
         <label className="block mb-1 font-semibold">Niveau obtenu</label>
-        {['Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5'].map((niveau) => (
+        {['Bac', 'Bac+2', 'Bac+3', 'Bac+4', 'Bac+5'].map((niveau) => (
           <label key={niveau} className="flex items-center text-sm mb-1 gap-2">
             <input
               type="checkbox"
@@ -130,12 +137,24 @@ const TrainingFilters = ({
 
       <div className="mb-6">
         <label className="block mb-1 font-semibold">Niveau requis</label>
-        {['Brevet', 'Bac', 'Bac +1', 'Bac +2', 'Bac +3'].map((niveau) => (
+
+        {NIVEAUX_REQUIS.map((niveau) => (
           <label key={niveau} className="flex items-center text-sm mb-1 gap-2">
             <input
               type="checkbox"
               checked={minRequis.includes(niveau)}
-              onChange={() => toggleValue(niveau, minRequis, setMinRequis)}
+              onChange={() => {
+                const levels = getInferiorLevels(niveau);
+                const alreadySelected = minRequis.includes(niveau);
+
+                if (alreadySelected) {
+                  // Décoche : on enlève le niveau + tous les inférieurs
+                  setMinRequis(minRequis.filter((n) => !levels.includes(n)));
+                } else {
+                  // Coche : on ajoute le niveau + tous les inférieurs
+                  setMinRequis([...new Set([...minRequis, ...levels])]);
+                }
+              }}
               className="accent-turquoise"
             />
             {niveau}

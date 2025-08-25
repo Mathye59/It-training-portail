@@ -14,28 +14,11 @@ const PageCatalogue: React.FC = () => {
   // Filtres appliqués à l'API
   const [filters, setFilters] = useState({
     lieu: null,
-    prix: 0,
+    prix: 5000,
     diplomeObtenu: [],
     minRequis: [],
     financement: [],
   });
-
-  // Application des nouveaux filtres (venant du composant enfant)
-  const handleFilterChange = (newFilters: any) => {
-    setFilters(newFilters);
-  };
-
-  // Réinitialisation manuelle depuis un bouton externe (ex: futur bouton global)
-  const handleResetFilters = () => {
-    setFilters({
-      lieu: null,
-      prix: 0,
-      diplomeObtenu: [],
-      minRequis: [],
-      financement: [],
-    });
-    setResetKey((prev) => prev + 1); // force le reset visuel dans le composant enfant
-  };
 
   return (
     <div className="bg-white text-penn dark:bg-blueDarkIT dark:text-white">
