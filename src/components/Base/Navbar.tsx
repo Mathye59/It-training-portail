@@ -106,7 +106,7 @@ const Navbar: React.FC = () => {
           role="menu"
           aria-labelledby="menu-button"
         >
-          <ul className="flex flex-col items-center space-y-6 py-6">
+          <ul className="flex flex-col items-center space-y-6 py-6 text-blueDarkIT">
             <li>
               <Link
                 to="/"
@@ -132,7 +132,7 @@ const Navbar: React.FC = () => {
                   setMenuOpen(false);
                   scrollToBtnContact();
                 }}
-                className="inline-block px-2 py-1 hover:text-greenIT transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-greenIT/40 rounded-sm"
+                className="inline-block px-2 py-1 hover:text-greenIT transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-greenIT/40 rounded-sm "
               >
                 Contact
               </button>
